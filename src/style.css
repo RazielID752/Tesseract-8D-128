@@ -203,6 +203,10 @@ h2 {
   grid-column: 1 / -1;
 }
 
+.panel-visualizer {
+  grid-column: 1 / -1;
+}
+
 .input-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -342,6 +346,18 @@ textarea::placeholder {
   grid-column: 1 / -1;
 }
 
+.visual-placeholder {
+  display: grid;
+  min-height: 220px;
+  place-items: center;
+  padding: 24px;
+  border: 1px dashed rgba(154, 168, 183, 0.24);
+  border-radius: 16px;
+  color: var(--muted);
+  background: rgba(7, 9, 13, 0.42);
+  text-align: center;
+}
+
 .log-panel {
   display: grid;
   gap: 8px;
@@ -401,6 +417,22 @@ pre {
 .concept-warning {
   border-color: rgba(255, 191, 105, 0.28);
   background: rgba(255, 191, 105, 0.08);
+}
+
+.concept-visual {
+  gap: 14px;
+}
+
+.permutation-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 520px;
+  overflow: hidden;
+  border: 1px solid rgba(65, 227, 195, 0.18);
+  border-radius: 16px;
+  background: #020604;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
 }
 
 .concept-kicker {
@@ -468,6 +500,7 @@ pre {
   .panel-input,
   .panel-actions,
   .panel-output,
+  .panel-visualizer,
   .output-primary,
   .output-primary:last-child {
     grid-column: auto;

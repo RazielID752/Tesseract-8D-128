@@ -1,3 +1,5 @@
+import { permutationVisualSvg } from './permutation-visual'
+
 export const conceptPageTemplate = `
   <section id="concept-view" class="page-view is-hidden" aria-labelledby="concept-title">
     <div class="concept-hero">
@@ -15,6 +17,16 @@ export const conceptPageTemplate = `
         <h3>Payload da v0.3</h3>
         <p>A saída autenticada da cifra usa versão, nonce, ciphertext e tag.</p>
         <pre class="concept-code">T8D3:nonceHex:ciphertextHex:tagHex</pre>
+      </article>
+
+      <article class="concept-card concept-visual concept-wide">
+        <span class="concept-kicker">Visual</span>
+        <h3>Como a permutação espalha posições</h3>
+        <p>
+          A faixa clara representa bytes próximos na entrada. Depois das rodadas, esses bytes
+          passam a ocupar posições distantes no bloco, junto com difusão e mistura entre blocos.
+        </p>
+        ${permutationVisualSvg}
       </article>
 
       <article class="concept-card">

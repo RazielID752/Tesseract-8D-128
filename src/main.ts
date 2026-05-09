@@ -8,6 +8,7 @@ import {
   runRepeatedTextTest,
 } from './t8d-analysis'
 import { conceptPageTemplate } from './concept-page'
+import { createEncryptionPermutationVisual } from './permutation-visual'
 import { decryptT8D, encryptT8D, hashT8D512 } from './t8d'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
@@ -92,6 +93,15 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
             </label>
           </div>
         </section>
+
+        <section class="panel panel-visualizer" aria-labelledby="visualizer-title">
+          <div class="panel-header">
+            <h2 id="visualizer-title">Visual da criptografia</h2>
+          </div>
+          <div id="encryption-visual" class="visual-placeholder">
+            Criptografe uma mensagem para ver a redistribuição visual dos bytes do ciphertext.
+          </div>
+        </section>
       </div>
 
       <section class="log-panel" aria-live="polite">
@@ -111,6 +121,7 @@ const associatedDataInput = document.querySelector<HTMLInputElement>('#associate
 const payloadInput = document.querySelector<HTMLTextAreaElement>('#payload')!
 const resultInput = document.querySelector<HTMLTextAreaElement>('#result')!
 const hashOutput = document.querySelector<HTMLTextAreaElement>('#hash-output')!
+const encryptionVisual = document.querySelector<HTMLDivElement>('#encryption-visual')!
 const logOutput = document.querySelector<HTMLPreElement>('#log')!
 const togglePasswordButton = document.querySelector<HTMLButtonElement>('#toggle-password')!
 const labView = document.querySelector<HTMLElement>('#lab-view')!
@@ -182,6 +193,8 @@ document.querySelector<HTMLButtonElement>('#encrypt')!.addEventListener('click',
       requirePassword(),
       associatedDataInput.value,
     )
+    encryptionVisual.classList.remove('visual-placeholder')
+    encryptionVisual.innerHTML = createEncryptionPermutationVisual(plaintextInput.value, payloadInput.value)
     log('Mensagem criptografada com sucesso.')
   } catch (error) {
     log(error instanceof Error ? error.message : 'Falha ao criptografar.')
